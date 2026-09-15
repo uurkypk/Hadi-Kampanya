@@ -1,0 +1,1042 @@
+<title>Hadi Black Kazanç Asistanı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --bg:#F7F4FC;
+  --surface:#FFFFFF;
+  --surface-2:#F1EBFA;
+  --surface-3:#E7DBF6;
+  --border:#DFD0F2;
+  --ink:#221333;
+  --ink-dim:#6B5C82;
+  --ink-faint:#9686AC;
+  --brand:#6B2FB3;
+  --brand-strong:#4C1D85;
+  --brand-soft:#EFE3FB;
+  --brand-ink:#3B1466;
+  --money:#187A5B;
+  --money-soft:#E1F3EC;
+  --warn:#A2481F;
+  --warn-soft:#F6E4D8;
+  --card-bg-1:#3A1768;
+  --card-bg-2:#150826;
+  --card-fg:#F5EFFF;
+  --card-fg-dim:#C9B6E8;
+  --card-chip-1:#FFFFFF;
+  --card-chip-2:#D3C3ED;
+  --shadow: 0 1px 2px rgba(60,20,100,.07), 0 10px 26px -14px rgba(60,20,100,.22);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 9px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#170F24;
+    --surface:#20152F;
+    --surface-2:#2A1D3D;
+    --surface-3:#33234A;
+    --border:#402E5C;
+    --ink:#F3ECFB;
+    --ink-dim:#C4B3DE;
+    --ink-faint:#8E7BAB;
+    --brand:#B48CF0;
+    --brand-strong:#CBA8F5;
+    --brand-soft:#33224E;
+    --brand-ink:#F1E6FF;
+    --money:#4FCBA3;
+    --money-soft:#163429;
+    --warn:#E4936A;
+    --warn-soft:#3B2317;
+    --shadow: 0 1px 2px rgba(0,0,0,.45), 0 14px 34px -16px rgba(0,0,0,.65);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#170F24;
+  --surface:#20152F;
+  --surface-2:#2A1D3D;
+  --surface-3:#33234A;
+  --border:#402E5C;
+  --ink:#F3ECFB;
+  --ink-dim:#C4B3DE;
+  --ink-faint:#8E7BAB;
+  --brand:#B48CF0;
+  --brand-strong:#CBA8F5;
+  --brand-soft:#33224E;
+  --brand-ink:#F1E6FF;
+  --money:#4FCBA3;
+  --money-soft:#163429;
+  --warn:#E4936A;
+  --warn-soft:#3B2317;
+  --shadow: 0 1px 2px rgba(0,0,0,.45), 0 14px 34px -16px rgba(0,0,0,.65);
+  color-scheme: dark;
+}
+
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size:15.5px;
+  line-height:1.55;
+  padding-inline:16px;
+  padding-block: 20px 96px;
+}
+h1,h2,h3{
+  font-family:"Manrope", ui-sans-serif, system-ui, sans-serif;
+  text-wrap:balance;
+  margin:0;
+  color:var(--ink);
+}
+.mono, .num{
+  font-family:"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-numeric: tabular-nums;
+}
+a{color:var(--brand-strong);}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:36px;}
+
+/* ---------- Hero ---------- */
+.hero{
+  display:flex;
+  flex-wrap:wrap;
+  gap:24px;
+  align-items:center;
+  padding-block:8px;
+}
+.hero-text{flex:1 1 320px;display:flex;flex-direction:column;gap:10px;}
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--brand-strong);
+}
+.hero h1{font-size:clamp(26px,5vw,34px);font-weight:800;letter-spacing:-0.01em;}
+.hero p{margin:0;color:var(--ink-dim);max-width:52ch;}
+.meta-line{font-size:12.5px;color:var(--ink-faint);}
+.meta-line a{color:var(--ink-faint);text-decoration-color:var(--border);}
+
+.hadi-card{
+  flex:0 0 auto;
+  width:220px;
+  aspect-ratio:1.586/1;
+  border-radius:16px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, #5B2A9C 0%, transparent 55%),
+    linear-gradient(155deg,var(--card-bg-1) 0%,var(--card-bg-2) 75%);
+  border:1px solid rgba(0,0,0,.25);
+  box-shadow: var(--shadow);
+  position:relative;
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  color:var(--card-fg);
+  overflow:hidden;
+}
+.hadi-card::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 40%, rgba(255,255,255,.14) 50%, transparent 60%);
+  pointer-events:none;
+}
+.hadi-card .chip{
+  width:34px;height:25px;border-radius:5px;
+  background:linear-gradient(155deg,var(--card-chip-1),var(--card-chip-2));
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.15);
+}
+.hadi-card .brand{font-family:"Manrope";font-weight:800;font-size:15px;letter-spacing:.02em;color:var(--card-fg);}
+.hadi-card .sub{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-fg-dim);}
+
+/* ---------- Layout blocks ---------- */
+section{display:flex;flex-direction:column;gap:16px;}
+.section-head{display:flex;flex-direction:column;gap:4px;}
+.section-head h2{font-size:20px;font-weight:800;}
+.section-head p{margin:0;color:var(--ink-dim);font-size:13.5px;}
+
+/* ---------- Calculator ---------- */
+.calc-grid{
+  display:grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap:18px;
+  align-items:start;
+}
+@media (max-width:760px){ .calc-grid{grid-template-columns:1fr;} }
+
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  box-shadow:var(--shadow);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.field-group{display:flex;flex-direction:column;gap:10px;}
+.field-group-title{
+  display:flex;align-items:baseline;gap:8px;
+  font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--brand-strong);
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;
+}
+.field-group-title .fg-note{
+  font-size:10.5px;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink-faint);
+}
+.field-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:10px;}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0;}
+.field label{font-size:12.5px;color:var(--ink-dim);font-weight:500;}
+.field .hint{font-size:11px;color:var(--ink-faint);}
+input[type="number"], select{
+  width:100%;
+  font:inherit;
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:14.5px;
+  padding:9px 10px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  color:var(--ink);
+}
+select{font-family:"IBM Plex Sans", sans-serif;}
+input[type="number"]:focus, select:focus, input[type="checkbox"]:focus-visible{
+  outline:2px solid var(--brand-strong);
+  outline-offset:1px;
+}
+input[type="number"]::-webkit-inner-spin-button{opacity:.6;}
+
+.check-row{display:flex;align-items:flex-start;gap:9px;}
+.check-row input{margin-top:3px;width:16px;height:16px;accent-color:var(--brand-strong);flex:0 0 auto;}
+.check-row .txt{display:flex;flex-direction:column;}
+.check-row .txt b{font-size:13.5px;font-weight:600;}
+.check-row .txt span{font-size:11.5px;color:var(--ink-faint);}
+
+/* ---------- Results ---------- */
+.results{position:sticky;top:16px;}
+.totals-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.total-tile{
+  background:linear-gradient(155deg,var(--card-bg-1),var(--card-bg-2));
+  color:var(--card-fg);
+  border-radius:var(--radius-md);
+  padding:16px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+}
+.total-tile.yearly{background:linear-gradient(155deg,#2B1150,var(--card-bg-2));}
+.total-tile .lbl{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--card-fg-dim);}
+.total-tile .amt{font-family:"IBM Plex Mono";font-size:clamp(19px,5.2vw,27px);font-weight:600;color:#FFFFFF;line-height:1.15;overflow-wrap:break-word;}
+.total-tile .sub{font-size:11px;color:var(--card-fg-dim);}
+.scenario-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--brand-soft);color:var(--brand-ink);
+  border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;width:fit-content;
+}
+
+.breakdown-group{display:flex;flex-direction:column;gap:2px;}
+.bg-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding-block:10px 6px;
+}
+.bg-head .bg-title{font-size:12px;font-weight:700;letter-spacing:.03em;color:var(--brand-strong);text-transform:uppercase;}
+.bg-head .bg-total{font-family:"IBM Plex Mono";font-size:13px;font-weight:600;color:var(--money);white-space:nowrap;}
+.breakdown{display:flex;flex-direction:column;gap:2px;}
+.b-item{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:9px 0;border-bottom:1px dashed var(--border);
+}
+.b-item:last-child{border-bottom:none;}
+.b-item .name{font-size:13px;font-weight:500;display:flex;flex-direction:column;gap:2px;}
+.b-item .tag{font-size:10.5px;font-weight:600;letter-spacing:.03em;color:var(--ink-faint);}
+.b-item .val{font-family:"IBM Plex Mono";font-weight:600;color:var(--money);white-space:nowrap;}
+.b-empty{font-size:12.5px;color:var(--ink-faint);padding-block:4px 10px;}
+
+.onetime-box{
+  background:var(--brand-soft);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.onetime-box .lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-ink);}
+.onetime-box .row{display:flex;justify-content:space-between;font-size:13px;}
+.onetime-box .row b{font-family:"IBM Plex Mono";color:var(--brand-strong);}
+
+.note{font-size:11.5px;color:var(--ink-faint);line-height:1.5;}
+
+/* sticky bottom bar */
+.stickybar{
+  position:fixed;left:0;right:0;bottom:0;
+  display:flex;justify-content:center;
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg, transparent, var(--bg) 30%);
+  pointer-events:none;
+  z-index:40;
+}
+.stickybar-inner{
+  pointer-events:auto;
+  width:100%;max-width:888px;
+  background:linear-gradient(155deg,var(--card-bg-1),var(--card-bg-2));
+  color:var(--card-fg);
+  border-radius:999px;
+  padding:10px 18px;
+  display:flex;align-items:center;justify-content:space-between;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.14);
+  opacity:0;transform:translateY(12px);
+  transition:opacity .25s ease, transform .25s ease;
+  gap:12px;
+}
+.stickybar-inner.show{opacity:1;transform:translateY(0);}
+.stickybar-inner .sb-col{display:flex;flex-direction:column;line-height:1.2;}
+.stickybar-inner span.lbl{font-size:10px;color:var(--card-fg-dim);}
+.stickybar-inner b{font-family:"IBM Plex Mono";color:#FFFFFF;font-size:15px;}
+
+/* ---------- Argument chips ---------- */
+.pitch{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+@media (max-width:700px){.pitch{grid-template-columns:1fr;}}
+.pitch-card{
+  background:var(--money-soft);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:14px 15px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.pitch-card .k{font-family:"IBM Plex Mono";font-weight:600;font-size:20px;color:var(--money);}
+.pitch-card p{margin:0;font-size:12.5px;color:var(--ink-dim);}
+
+/* ---------- Campaign cards ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;}
+.tab{
+  border:1px solid var(--border);background:var(--surface);color:var(--ink-dim);
+  font:inherit;font-size:12.5px;font-weight:600;padding:7px 13px;border-radius:999px;cursor:pointer;
+}
+.tab[aria-pressed="true"]{background:var(--brand-strong);color:#fff;border-color:var(--brand-strong);}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:15px 16px;display:flex;flex-direction:column;gap:9px;box-shadow:var(--shadow);
+}
+.card h3{font-size:14.5px;font-weight:700;line-height:1.35;}
+.badges{display:flex;flex-wrap:wrap;gap:5px;}
+.badge{font-size:10px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:999px;text-transform:uppercase;}
+.badge.a101{background:var(--brand-soft);color:var(--brand-ink);}
+.badge.genel{background:var(--surface-3);color:var(--ink-dim);}
+.badge.gold{background:var(--surface-3);color:var(--ink-dim);}
+.badge.ckk{background:var(--money-soft);color:var(--money);}
+.badge.active{background:var(--money-soft);color:var(--money);}
+.badge.soon{background:var(--warn-soft);color:var(--warn);}
+.badge.expired{background:var(--surface-3);color:var(--ink-faint);}
+.card ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:12.5px;color:var(--ink-dim);}
+.card li::marker{color:var(--ink-faint);}
+.card .foot{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:4px;}
+.card .foot a{font-size:12px;font-weight:600;}
+.card .foot .days{font-size:11px;color:var(--ink-faint);}
+
+details.other{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;
+}
+details.other summary{cursor:pointer;font-weight:700;font-size:13.5px;}
+details.other .other-list{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 16px;font-size:12.5px;}
+details.other .other-list a{color:var(--ink-dim);text-decoration:none;border-bottom:1px dotted var(--border);}
+details.other .other-list a:hover{color:var(--brand-strong);border-color:var(--brand-strong);}
+
+.ckk-callout{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-md);
+  padding:16px 18px;display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;
+}
+.ckk-callout .icon{
+  width:42px;height:42px;border-radius:11px;flex:0 0 auto;
+  background:linear-gradient(155deg,var(--brand),var(--brand-strong));
+  display:flex;align-items:center;justify-content:center;font-family:"Manrope";font-weight:800;color:#fff;font-size:13px;
+}
+.ckk-callout .txt{flex:1 1 260px;}
+.ckk-callout h3{font-size:14.5px;margin-bottom:4px;}
+.ckk-callout p{margin:0;font-size:13px;color:var(--ink-dim);}
+
+footer{
+  border-top:1px solid var(--border);
+  padding-top:16px;
+  display:flex;flex-direction:column;gap:4px;
+  color:var(--ink-faint);font-size:11.5px;
+}
+footer a{color:var(--ink-faint);}
+</style>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">A101 Satış Ekibi · İç Kaynak</span>
+      <h1>Hadi Black Kazanç Asistanı</h1>
+      <p>Müşterinin harcama alışkanlıklarını gir, A101'deki Hadi Black Kredi Kartı kampanyalarından ayda ne kadar kazanabileceğini anında göster.</p>
+      <span class="meta-line">Kaynak: <a href="https://tombankhadi.com/hadi-kazan/kampanyalar" target="_blank" rel="noopener">tombankhadi.com/hadi-kazan/kampanyalar</a> · Veriler 14 Eylül 2026 itibarıyla derlenmiştir, katılım koşulları ve tarihler bankaca değiştirilebilir.</span>
+    </div>
+    <div class="hadi-card" aria-hidden="true">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="chip"></div>
+        <span class="sub">Kredi Kartı</span>
+      </div>
+      <div>
+        <div class="brand">HADI BLACK</div>
+        <div class="sub">TOM Bank Hadi</div>
+      </div>
+    </div>
+  </div>
+
+  <section class="pitch" aria-label="Hızlı satış argümanları">
+    <div class="pitch-card">
+      <span class="k">%1</span>
+      <p>A101'deki <b>her</b> alışverişten otomatik nakit iade — ayda 125 TL'ye kadar, Hadi Gold ile.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="k">%50</span>
+      <p>Süt ürünlerinde hediye bakiye — Çok Kazananlar Kulübü'yle ayda 500 TL'ye kadar.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="k">%10</span>
+      <p>Marketlerde ve akaryakıtta Çok Kazananlar Kulübü'yle %10'a varan iade.</p>
+    </div>
+  </section>
+
+  <section aria-label="Kazanç hesaplayıcı">
+    <div class="section-head">
+      <h2>Kazanç Hesaplayıcı</h2>
+      <p>Müşteriye aylık ortalama harcamalarını sor, aşağıya gir — kazanç sağda anında hesaplanır.</p>
+      <span class="scenario-chip" id="scenarioChip">Senaryo: Hadi Black Kredi Kartı</span>
+    </div>
+
+    <div class="calc-grid">
+      <div class="panel">
+
+        <div class="field-group">
+          <div class="field-group-title">Üyelik</div>
+          <div class="check-row">
+            <input type="checkbox" id="ckkChk">
+            <div class="txt"><label for="ckkChk"><b>Çok Kazananlar Kulübü üyesi</b></label><span>Black kart + Günlük Kazandıran Hesapta min. 10.000 TL şartıyla aşağıdaki ana kampanyaların oranı ve tavanı yükselir.</span></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">Ana Kampanyalar <span class="fg-note">(aylık, TL)</span></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="a101Sut">A101 — süt ürünleri</label>
+              <input type="number" id="a101Sut" min="0" step="25" value="200" inputmode="numeric">
+              <span class="hint">%50 hediye bakiye</span>
+            </div>
+            <div class="field">
+              <label for="marketDiger">Market harcamaları</label>
+              <input type="number" id="marketDiger" min="0" step="500" value="6000" inputmode="numeric">
+              <span class="hint">A101 hariç · %5, ÇKK ile %10</span>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="akaryakit">Akaryakıt</label>
+              <input type="number" id="akaryakit" min="0" step="100" value="1500" inputmode="numeric">
+              <span class="hint">%5, ÇKK ile %10 · tek işlem ≥1.000 TL</span>
+            </div>
+            <div class="field">
+              <label for="restoran">Hafta sonu restoran</label>
+              <input type="number" id="restoran" min="0" step="100" value="0" inputmode="numeric">
+              <span class="hint">%7,5, ÇKK ile %15 · tek işlem ≥750 TL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">Diğer Kampanyalar <span class="fg-note">(nakit iade, aylık TL)</span></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="a101Genel">A101 — genel harcama</label>
+              <input type="number" id="a101Genel" min="0" step="50" value="4000" inputmode="numeric">
+              <span class="hint">%1 nakit iade</span>
+            </div>
+            <div class="field">
+              <label for="a101MeyveSebze">A101 — meyve &amp; sebze</label>
+              <input type="number" id="a101MeyveSebze" min="0" step="25" value="500" inputmode="numeric">
+              <span class="hint">%1'e ek %1,5 nakit iade</span>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="dijital">Dijital abonelik</label>
+              <input type="number" id="dijital" min="0" step="10" value="0" inputmode="numeric">
+              <span class="hint">Netflix, Spotify, ChatGPT vb. · %50 iade</span>
+            </div>
+          </div>
+          <div class="check-row" id="dijitalEkstreRow">
+            <input type="checkbox" id="dijitalEkstreChk">
+            <div class="txt"><label for="dijitalEkstreChk"><b>Son Black kart ekstresi ≥10.000 TL</b></label><span>Dijital platform iadesi için şart.</span></div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field-group-title">Bu Ay İçin Tek Seferlik Fırsatlar</div>
+          <div class="check-row">
+            <input type="checkbox" id="fuel4Chk">
+            <div class="txt"><label for="fuel4Chk"><b>4. akaryakıt harcaması (≥1.800 TL)</b></label><span>27 Ağu–27 Eyl 2026 arası, farklı günlerde 4. dolumda +500 TL iade.</span></div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="referralCount">"Arkadaşını TOM Bank'lı yap" — getirilen kişi</label>
+              <select id="referralCount">
+                <option value="0" selected>0 kişi</option>
+                <option value="1">1 kişi</option>
+                <option value="2">2 kişi</option>
+                <option value="3">3 kişi</option>
+                <option value="4">4 kişi (üst sınır)</option>
+              </select>
+              <span class="hint">Tüm taraflar o ay ≥5.000 TL harcamalı</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel results">
+        <div class="totals-row">
+          <div class="total-tile">
+            <span class="lbl">Aylık kazanç</span>
+            <span class="amt num" id="totalAmt">0 TL</span>
+            <span class="sub" id="totalSub">nakit + hediye bakiye</span>
+          </div>
+          <div class="total-tile yearly">
+            <span class="lbl">Yıllık kazanç</span>
+            <span class="amt num" id="yearlyAmt">0 TL</span>
+            <span class="sub">aylık × 12, tahmini</span>
+          </div>
+        </div>
+
+        <div class="breakdown-group">
+          <div class="bg-head"><span class="bg-title">Ana Kampanyalar</span><span class="bg-total" id="anaTotal">+0 TL</span></div>
+          <div class="breakdown" id="breakdownAna"></div>
+        </div>
+
+        <div class="breakdown-group">
+          <div class="bg-head"><span class="bg-title">Diğer Kampanyalar · Nakit İade</span><span class="bg-total" id="digerTotal">+0 TL</span></div>
+          <div class="breakdown" id="breakdownDiger"></div>
+        </div>
+
+        <div class="onetime-box" id="onetimeBox" hidden>
+          <span class="lbl">Bu ay tek seferlik</span>
+          <div id="onetimeList"></div>
+        </div>
+
+        <p class="note">Tutarlar; kampanya sayfalarında yayınlanan oran, taban tutar ve tavanlara göre yaklaşık hesaplanmıştır. Yıllık rakam, güncel aylık kazancın 12 ay boyunca aynı koşullarda süreceği varsayımıyla hesaplanmıştır — kampanyalar bankaca değiştirilebilir/sonlandırılabilir, tek seferlik fırsatları içermez. Aynı harcama birden fazla kampanyaya dahil edilemez; sistemde genellikle en yüksek tutarlı kampanya geçerli olur. Kesin hak ediş için Hadi uygulamasındaki kampanyaya "Katıl" onayı gerekir.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Çok Kazananlar Kulübü">
+    <div class="ckk-callout">
+      <div class="icon">ÇKK</div>
+      <div class="txt">
+        <h3>Çok Kazananlar Kulübü nasıl anlatılır?</h3>
+        <p>Black kart + Günlük Kazandıran Hesap'ta min. <b>10.000 TL</b> bakiye (her ayın 15'i ve son günü kontrol edilir) → market, restoran, akaryakıt iadeleri ve kırtasiye/giyim taksitleri <b>2 katına</b> çıkar. Şartlardan biri bozulursa üyelik ertesi gün sona erer; aynı ay içinde tekrar girilemez.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="Kampanya referansı">
+    <div class="section-head">
+      <h2>Tüm Aktif Kampanyalar</h2>
+      <p>Sayfadaki 90'a yakın kampanya tek tek incelendi; aşağıda A101 ve genel kart kazançlarıyla ilgili olanların güncel koşulları listelendi.</p>
+    </div>
+
+    <div class="tabs" role="tablist" aria-label="Kampanya grupları">
+      <button class="tab" data-filter="all" aria-pressed="true">Tümü</button>
+      <button class="tab" data-filter="a101" aria-pressed="false">A101'e Özel</button>
+      <button class="tab" data-filter="genel" aria-pressed="false">Genel Kart Kazancı</button>
+      <button class="tab" data-filter="taksit" aria-pressed="false">Taksit &amp; Kredi</button>
+      <button class="tab" data-filter="tek" aria-pressed="false">Tek Seferlik</button>
+    </div>
+
+    <div class="cards" id="cardGrid"></div>
+
+    <details class="other">
+      <summary>Diğer marka &amp; bölge kampanyaları (A101 dışı, bilgi amaçlı — 40+ kampanya)</summary>
+      <div class="other-list" id="otherList"></div>
+    </details>
+  </section>
+
+  <footer>
+    <span>Bu sayfa TOM Bank Hadi'nin genel kampanya sitesinden derlenen bilgilerle hazırlanmış, resmî olmayan bir satış yardımcı aracıdır — banka veya A101 tarafından onaylanmamıştır.</span>
+    <span>Kesin ve güncel koşullar için her zaman <a href="https://tombankhadi.com/hadi-kazan/kampanyalar" target="_blank" rel="noopener">tombankhadi.com/hadi-kazan/kampanyalar</a> sayfasını kontrol edin; kampanya tarihleri ve tutarları banka tarafından değiştirilebilir.</span>
+  </footer>
+</div>
+
+<div class="stickybar" aria-hidden="true">
+  <div class="stickybar-inner" id="stickyInner">
+    <div class="sb-col"><span class="lbl">Aylık</span><b id="stickyAmt">0 TL</b></div>
+    <div class="sb-col"><span class="lbl">Yıllık</span><b id="stickyYearly">0 TL</b></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  function tl(n){
+    n = Math.round(n);
+    return n.toLocaleString('tr-TR') + " TL";
+  }
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------------- fixed scenario: Hadi Black Kredi Kartı; ÇKK is a toggle ---------------- */
+  function updateScenarioChip(){
+    var ckk = $('ckkChk').checked;
+    $('scenarioChip').textContent = "Senaryo: Hadi Black Kredi Kartı" + (ckk ? " + Çok Kazananlar Kulübü üyesi" : "");
+  }
+
+  /* ---------------- inputs ---------------- */
+  var numIds = ['a101Genel','a101Sut','a101MeyveSebze','marketDiger','akaryakit','restoran','dijital'];
+  numIds.forEach(function(id){ $(id).addEventListener('input', calculate); });
+  ['ckkChk','dijitalEkstreChk','fuel4Chk'].forEach(function(id){ $(id).addEventListener('change', function(){ updateScenarioChip(); calculate(); }); });
+  $('referralCount').addEventListener('change', calculate);
+
+  function num(id){
+    var v = parseFloat($(id).value);
+    return isNaN(v) || v < 0 ? 0 : v;
+  }
+
+  /* ---------------- date-gated one-time campaign windows ---------------- */
+  var today = new Date();
+  var fuel4Window = today >= new Date('2026-08-27') && today <= new Date('2026-09-27T23:59:59');
+  var referralWindow = today >= new Date('2026-09-04') && today <= new Date('2026-09-30T23:59:59');
+  var dijitalWindow = today <= new Date('2026-09-30T23:59:59');
+
+  function calculate(){
+    var ckk = $('ckkChk').checked;
+
+    var a101Genel = num('a101Genel');
+    var a101Sut = num('a101Sut');
+    var a101MeyveSebze = num('a101MeyveSebze');
+    var marketDiger = num('marketDiger');
+    var akaryakit = num('akaryakit');
+    var restoran = num('restoran');
+    var dijital = num('dijital');
+
+    var a101Toplam = a101Genel + a101Sut + a101MeyveSebze;
+    var itemsAna = [];   // Ana Kampanyalar: süt, market, akaryakıt, restoran
+    var itemsDiger = []; // Diğer Kampanyalar: A101 %1, meyve-sebze eki, dijital platform — hepsi nakit iade
+
+    /* ANA 1) A101 süt ürünleri %50 hediye bakiye, Black tavanı 250 TL/ay, ÇKK ile 500 TL/ay */
+    if(a101Sut > 0){
+      var capSut = ckk ? 500 : 250;
+      var v1 = Math.min(a101Sut * 0.5, capSut);
+      if(v1 > 0) itemsAna.push({name:"A101 süt ürünleri — %50 A101 hediye bakiye", tag: ckk ? "ÇKK tavanı 500 TL" : "Black tavanı 250 TL", val:v1});
+    }
+
+    /* ANA 2) Market harcamaları — paket bazlı %5, ÇKK'ya özel %10 iade */
+    if(marketDiger > 0){
+      var candidates = [0];
+      if(marketDiger >= 5000) candidates.push(250);
+      if(marketDiger >= 10000) candidates.push(ckk ? 1000 : 500);
+      if(marketDiger >= 25000) candidates.push(1250);
+      var v2 = Math.max.apply(null, candidates);
+      if(v2 > 0) itemsAna.push({name:"Market harcamaları — seçili paket iade", tag: ckk ? "ÇKK paketi %10" : "%5 paket", val:v2});
+    }
+
+    /* ANA 3) Akaryakıt — %5 nakit iade, ÇKK ile %10, tavan 125/250 TL/ay, min işlem 1.000 TL */
+    if(akaryakit >= 1000){
+      var rateF = ckk ? 0.10 : 0.05;
+      var capF = ckk ? 250 : 125;
+      var v3 = Math.min(akaryakit * rateF, capF);
+      if(v3 > 0) itemsAna.push({name:"Akaryakıt — %" + (rateF*100).toString().replace('.', ',') + " nakit iade", tag: ckk ? "ÇKK tavanı 250 TL" : "Black tavanı 125 TL", val:v3});
+    }
+
+    /* ANA 4) Hafta sonu restoran — %7,5 iade, ÇKK ile %15, tavan 300/600 TL/ay, min işlem 750 TL */
+    if(restoran >= 750){
+      var rateR = ckk ? 0.15 : 0.075;
+      var capR = ckk ? 600 : 300;
+      var v4 = Math.min(restoran * rateR, capR);
+      if(v4 > 0) itemsAna.push({name:"Hafta sonu restoran — %" + (rateR*100).toString().replace('.', ',') + " iade", tag: ckk ? "ÇKK tavanı 600 TL" : "Tavan 300 TL", val:v4});
+    }
+
+    /* DİĞER 1) A101 genel %1 nakit iade, tavan 125 TL/ay — Hadi Gold üyeliği gerektirir (varsayılan kabul edilmiştir) */
+    if(a101Toplam > 0){
+      var v5 = Math.min(a101Toplam * 0.01, 125);
+      if(v5 > 0) itemsDiger.push({name:"A101'de her alışveriş — %1 nakit iade", tag:"Hadi Gold üyeliği varsayılmıştır", val:v5});
+    }
+
+    /* DİĞER 2) A101 meyve-sebze ek %1,5 nakit iade, tavan 250 TL/ay — Hadi Gold üyeliği gerektirir */
+    if(a101MeyveSebze > 0){
+      var v6 = Math.min(a101MeyveSebze * 0.015, 250);
+      if(v6 > 0) itemsDiger.push({name:"Meyve & sebze — ek %1,5 nakit iade", tag:"%1 kampanyasına ek", val:v6});
+    }
+
+    /* DİĞER 3) Dijital platform %50 iade, tavan 500 TL/ay, son ekstre ≥10.000 TL, 30 Eylül 2026'ya kadar */
+    if(dijitalWindow && $('dijitalEkstreChk').checked && dijital > 0){
+      var v7 = Math.min(dijital * 0.5, 500);
+      if(v7 > 0) itemsDiger.push({name:"Netflix / Spotify / ChatGPT vb. — %50 iade", tag:"Ekstre ≥10.000 TL şart · 30 Eyl'e kadar", val:v7});
+    }
+
+    var anaToplam = itemsAna.reduce(function(a,b){return a+b.val;},0);
+    var digerToplam = itemsDiger.reduce(function(a,b){return a+b.val;},0);
+    var grandTotal = anaToplam + digerToplam;
+
+    /* one-time items */
+    var onetime = [];
+    if($('fuel4Chk').checked && fuel4Window){
+      onetime.push({name:"4. akaryakıt harcaması bonusu", val:500});
+    }
+    var refCount = parseInt($('referralCount').value, 10) || 0;
+    if(referralWindow && refCount >= 2){
+      var refVal = refCount >= 4 ? 5000 : (refCount === 3 ? 2500 : 1000);
+      onetime.push({name: refCount + " arkadaş getirme — A101 hediye bakiye", val: refVal});
+    }
+
+    renderResults(itemsAna, itemsDiger, anaToplam, digerToplam, grandTotal, onetime);
+  }
+
+  function renderGroup(containerId, items){
+    var el = $(containerId);
+    el.innerHTML = '';
+    if(items.length === 0){
+      el.innerHTML = '<div class="b-empty">Harcama girildikçe bu bölümdeki kampanyalar burada listelenecek.</div>';
+      return;
+    }
+    items.sort(function(a,b){ return b.val - a.val; });
+    items.forEach(function(i){
+      var row = document.createElement('div');
+      row.className = 'b-item';
+      row.innerHTML = '<span class="name">' + i.name + '<span class="tag">' + i.tag + '</span></span><span class="val">+' + tl(i.val) + '</span>';
+      el.appendChild(row);
+    });
+  }
+
+  function renderResults(itemsAna, itemsDiger, anaToplam, digerToplam, total, onetime){
+    $('totalAmt').textContent = tl(total);
+    $('totalSub').textContent = "ana " + tl(anaToplam) + " + diğer " + tl(digerToplam);
+    $('yearlyAmt').textContent = tl(total * 12);
+    $('stickyAmt').textContent = tl(total);
+    $('stickyYearly').textContent = tl(total * 12);
+
+    $('anaTotal').textContent = '+' + tl(anaToplam);
+    $('digerTotal').textContent = '+' + tl(digerToplam);
+    renderGroup('breakdownAna', itemsAna);
+    renderGroup('breakdownDiger', itemsDiger);
+
+    var ob = $('onetimeBox');
+    var ol = $('onetimeList');
+    if(onetime.length === 0){
+      ob.hidden = true;
+    } else {
+      ob.hidden = false;
+      ol.innerHTML = onetime.map(function(o){
+        return '<div class="row"><span>' + o.name + '</span><b>+' + tl(o.val) + '</b></div>';
+      }).join('');
+    }
+  }
+
+  updateScenarioChip();
+  calculate();
+
+  /* ---------------- sticky bottom bar visibility ---------------- */
+  var stickyInner = $('stickyInner');
+  var calcSection = document.querySelector('.calc-grid');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.boundingClientRect.top < 0 && !e.isIntersecting){
+        stickyInner.classList.add('show');
+      } else if(e.intersectionRatio > 0.15){
+        stickyInner.classList.remove('show');
+      }
+    });
+  }, {threshold:[0,0.15,1]});
+  if(calcSection) io.observe(calcSection);
+  stickyInner.addEventListener('click', function(){
+    calcSection.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ================= Campaign reference data ================= */
+  var campaigns = [
+    {
+      title:"A101'de her alışverişte %1'e varan nakit iade",
+      group:"a101", badges:["a101","gold","active"],
+      end:"2026-12-31",
+      bullets:[
+        "Hadi Gold üyeliği şarttır; ödeme Hadi Hesap Kartı, Kredi Kartı veya QR ile yapılmalı.",
+        "Ayda en fazla 125 TL, günde en fazla 5 farklı işlemden kazanım.",
+        "Veresiye ile yapılan alışverişler kapsam dışıdır."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/a101de-her-alisveriste-1-nakit-iade"
+    },
+    {
+      title:"A101'lerde meyve-sebze alışverişinde %2,5 nakit iade",
+      group:"a101", badges:["a101","gold","active"],
+      end:"2026-12-31",
+      bullets:[
+        "%1 genel kampanyaya ek olarak %1,5 daha eklenir (toplam %2,5).",
+        "Bu ek kısım için ayrı tavan: ayda en fazla 250 TL.",
+        "Hadi Gold üyeliği şarttır."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/a101lerde-meyve-sebze-alisverislerinde-10-nakit-iade"
+    },
+    {
+      title:"A101'lerde kırtasiye harcamasında %10 hediye bakiye",
+      group:"a101", badges:["a101","active"],
+      end:"2026-09-30",
+      bullets:[
+        "Tek seferde en az 300 TL kırtasiye harcaması gerekir.",
+        "Black kart tavanı: günlük 75 TL, dönem başına 300 TL.",
+        "Hediye bakiye sadece A101'de geçerli, 10 gün içinde kullanılmalı.",
+        "Harcamadan önce Hadi uygulamasında kampanyaya \"Katıl\" gerekir."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/hadi-black-kredi-karti-ile-a101lerde-yapacagin-kirtasiye-harcamalarindan-10-hediye-bakiye-kazan"
+    },
+    {
+      title:"A101'lerde süt ürünlerinde %50 hediye bakiye",
+      group:"a101", badges:["a101","ckk","active"],
+      end:"2026-09-30",
+      bullets:[
+        "Black kart tavanı: günlük 100 TL, aylık 250 TL. ÇKK üyeliğiyle günlük 200 TL, aylık 500 TL'ye çıkar.",
+        "Harcamadan önce kampanyaya katılım gerekir."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/a101lerde-sut-urunleri-harcamalarinda-50-hediye-bakiye-kazan"
+    },
+    {
+      title:"A101 Ekstra'da kırtasiyede vade farksız 12 aya varan taksit",
+      group:"taksit", badges:["a101","active"],
+      end:"2026-09-30",
+      bullets:[
+        "Yalnızca A101 mobil uygulaması / a101.com.tr üzerinden, Hadi Alışveriş Kredisi ile.",
+        "Sepet 1.000–20.000 TL arası ve yalnızca kırtasiye ürünleri olmalı.",
+        "Taksit kademeleri: 3-6-9-12 ay. Kredi limiti ve banka onayına tabidir."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/alisveris-kredisi-ile-a101-ekstrada-tum-kirtasiye-alisverislerinde-vade-farksiz-12-aya-varan-taksit"
+    },
+    {
+      title:"Tüm kırtasiye alışverişinde vade farksız 3 / ÇKK'ya özel 6 taksit",
+      group:"taksit", badges:["genel","ckk","active"],
+      end:"2026-09-30",
+      bullets:[
+        "Hadi Black Kredi Kartı ile 1.000–20.000 TL arası kırtasiye harcamaları.",
+        "Bir ekstre döneminde ilk 3 işlem taksitlendirilir.",
+        "ÇKK üyeliği taksiti 3'ten 6'ya çıkarır."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/tum-kirtasiye-alisverislerinde-vade-farksiz-3-taksit-cok-kazananlar-kulubune-ozel-6-taksit"
+    },
+    {
+      title:"Giyimde vade farksız 3 / ÇKK'ya özel 6 taksit",
+      group:"taksit", badges:["genel","ckk","active"],
+      end:"2026-12-31",
+      bullets:[
+        "Hadi Black Kredi Kartı ile 1.000–20.000 TL arası giyim harcamaları.",
+        "Bir ekstre döneminde ilk 2 işlem taksitlendirilir.",
+        "ÇKK üyeliği taksiti 3'ten 6'ya çıkarır."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/giyim-alisverislerinde-kampanya"
+    },
+    {
+      title:"Kredi Kartı ile sonradan taksitlendir",
+      group:"taksit", badges:["genel","active"],
+      end:null,
+      bullets:[
+        "Eğitim, Sağlık ve Sigorta sektöründeki 100–50.000 TL'lik peşin harcamalar.",
+        "Hadi uygulamasından, ekstre kesilmeden önce 12 aya kadar taksitlendirilebilir.",
+        "İşlem ücreti alınmaz; akdi kâr payı taksitlere yansır."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/kredi-karti-taksitlendir"
+    },
+    {
+      title:"Tüm market harcamalarında %5, ÇKK'ya özel %10 iade",
+      group:"genel", badges:["genel","ckk","active"],
+      end:"2026-12-31",
+      bullets:[
+        "Ayda en az 5 farklı günde market harcaması şartı.",
+        "Paketler: 5.000 TL→250 TL, 10.000 TL→500 TL (ÇKK: 1.000 TL), 25.000 TL→1.250 TL.",
+        "Harcama öncesi Hadi uygulamasından paket seçimi gerekir."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/tum-market-harcamalarinda-secimini-yap-5-iade-kazan"
+    },
+    {
+      title:"Akaryakıtta %5, ÇKK'ya özel %10 iade",
+      group:"genel", badges:["genel","ckk","active"],
+      end:"2026-12-31",
+      bullets:[
+        "1.000 TL ve üzeri işlemlerde Black kart %5, ÇKK üyeleri %10 iade kazanır.",
+        "Aylık tavan: Black 125 TL, ÇKK 250 TL."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/akaryakit-harcamalarinda-5e-varan-iade-ustelik-cok-kazananlar-kulubune-ozel-10-iade"
+    },
+    {
+      title:"Akaryakıtta 4. dolumda 500 TL toplam iade",
+      group:"tek", badges:["genel","soon"],
+      end:"2026-09-27",
+      bullets:[
+        "27 Ağustos–27 Eylül 2026 arası geçerli, süresi yakında doluyor.",
+        "Farklı günlerde yapılan, tek seferde 1.800 TL ve üzeri 4. akaryakıt harcamasına 500 TL iade.",
+        "Yalnızca Hadi Black Kredi Kartı, yurt içi harcamalar."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/hadi-black-kredi-karti-ile-akaryakit-harcamalarina-toplam-500-tl-iade"
+    },
+    {
+      title:"Hafta sonu restoranda %7,5, ÇKK'ya özel %15 iade",
+      group:"genel", badges:["genel","ckk","active"],
+      end:"2026-12-31",
+      bullets:[
+        "Cumartesi–Pazar, tek seferde 750 TL ve üzeri restoran harcamaları.",
+        "Black kart tavanı: günlük 75 TL, aylık 300 TL. ÇKK üyeliğiyle günlük 150 TL, aylık 600 TL'ye çıkar.",
+        "Yalnızca Hadi Black Kredi Kartı."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/hafta-sonu-restoran-harcamalarinda-7-5-iade-ustelik-cok-kazananlar-kulubune-ozel-15-iade"
+    },
+    {
+      title:"Dijital platform ve yapay zekâ ödemelerinde %50'ye varan iade",
+      group:"genel", badges:["genel","soon"],
+      end:"2026-09-30",
+      bullets:[
+        "Netflix, Spotify, YouTube Premium, Disney+, HBO Max, ChatGPT, Google Gemini ve benzerleri.",
+        "Son Black kart ekstresi en az 10.000 TL olmalı.",
+        "Platform başına en fazla 50 TL, ayda toplam en fazla 500 TL iade."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/dijital-platform-ve-yapay-zeka-odemelerinde-50-ye-varan-iade"
+    },
+    {
+      title:"Çok Kazananlar Kulübü — 2 kat kazandıran kampanyalar",
+      group:"genel", badges:["ckk","active"],
+      end:null,
+      bullets:[
+        "Şart: Black kart + Günlük Kazandıran Hesap'ta min. 10.000 TL (her ayın 15'i ve son günü kontrol).",
+        "Market, restoran, akaryakıt iadelerini ve giyim/kırtasiye taksitini ikiye katlar.",
+        "Şart bozulursa üyelik ertesi gün sona erer, aynı ay tekrar girilemez."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/cok-kazananlar-kulubu-kat-kat-kazandiran-kampanyalari-ile-seninle"
+    },
+    {
+      title:"Kredi kartı limitini artır, 2.000 TL'ye kadar A101 hediye bakiye",
+      group:"tek", badges:["a101","expired"],
+      end:"2026-08-31",
+      bullets:[
+        "Harcama dönemi 31 Ağustos 2026'da sona erdi — artık katılıma kapalı.",
+        "Referans: limit artışı sonrası 10.000–50.000 TL harcamaya göre 1.000–2.000 TL A101 hediye bakiye veriyordu."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/hadi-kredi-karti-limitini-artir-toplam-2000-tlye-kadar-a101-hediye-bakiye-kazan"
+    },
+    {
+      title:"Arkadaşını TOM Bank'lı yap, 5.000 TL'ye varan A101 hediye bakiye",
+      group:"tek", badges:["a101","soon"],
+      end:"2026-09-30",
+      bullets:[
+        "Davet kodu ile 2 kişi getirene 1.000 TL, 3 kişiye 2.500 TL, 4 kişiye 5.000 TL A101 hediye bakiye.",
+        "Davet eden ve gelen tüm kişilerin o ay Black kart ile en az 5.000 TL harcaması şart.",
+        "Kod, Hadi uygulamasında \"Arkadaşını Davet Et\" sekmesinde."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/arkadaslarini-tom-bankli-yap-5-000-tlye-varan-hediye-bakiye-kazan"
+    },
+    {
+      title:"2 arkadaşını getir, bahara kadar Netflix bizden",
+      group:"tek", badges:["genel","soon"],
+      end:"2026-09-21",
+      bullets:[
+        "Katılım penceresi 21 Ağustos–21 Eylül 2026 ile sınırlı, süresi yakında doluyor.",
+        "En az 2, en fazla 5 yeni müşteri getirene aylık Netflix temel paket bedeli (189,99 TL) iade edilir.",
+        "Tüm tarafların o ay ≥3.000 TL Black kart harcaması gerekir."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/2-arkadasini-getir-bahara-kadar-hepinizin-netflix-uyeligin-bizden"
+    },
+    {
+      title:"TOM1500 koduyla yeni müşteriye 1.500 TL hoş geldin hediyesi",
+      group:"tek", badges:["genel","expired"],
+      end:"2026-08-31",
+      bullets:[
+        "Görüntülü görüşme ile üyelik son tarihi 31 Ağustos 2026'da doldu — yeni katılım kapandı.",
+        "Referans: ilk 5 harcamada kademeli 100-500 TL, toplam 1.500 TL'ye kadar hediye bakiye veriyordu."
+      ],
+      link:"https://tombankhadi.com/kampanyalar/toplam-1500-tl-hos-geldin-hediyesi-tom1500-koduyla-musterimiz-ol-1500-tl-senin-olsun"
+    }
+  ];
+
+  var otherCampaigns = [
+    ["Hadi Black ile Restoderm'de %30 indirim","hadi-black-karti-ile-restoderm-alisverislerinde-30-indirim"],
+    ["Hadi Black ile Zorlu PSM etkinliklerinde %20 indirim","hadi-black-kredi-karti-ile-zorlu-psm-nin-duzenledigi-etkinliklerde-20-indirim"],
+    ["Hadi Black ile tüm Pegasus uçuşlarında %50 iade","hadi-black-kredi-karti-ile-pegasus-harcamalarindan-50-iade-kazan"],
+    ["Pegasus davet koduyla 3.500 TL'ye varan iade","pegasus-davet-koduyla-tom-bank-hadi-musterisi-ol-pegasus-harcamalarindan-3-500-tlye-varan-iade-kazan"],
+    ["AllDayEsim alışverişinde %40 indirim","hadi-kredi-karti-ile-alldayesim-alisverislerinde-40-indirim"],
+    ["Çetmen mağazalarına özel 15 taksit","hadi-alisveris-kredisi-ile-cetmen-magazalarina-ozel-15-taksit"],
+    ["Samsung S26 fırsatı","tom-bank-hadi-den-samsung-s26-firsati"],
+    ["Samsung cep telefonunda 3 taksit","tom-bank-hadi-taksitli-alisveris-kredisi-ile-samsung-cep-telefonlarinda-3-taksit-firsati"],
+    ["Samsung beyaz eşyada 12 taksit","hadi-magazadan-alisveris-kredisi-ile-samsung-beyaz-esya-alisverislerine-12-taksit"],
+    ["Eczane kampanyası","tom-bank-hadi-den-eczane-kampanyasi"],
+    ["Eczanelerde %0 vade farkı, 6 taksit","eczanelerde-hadi-saglik-kredisi-ile-0-vade-farki-ile-6-taksit"],
+    ["Sağlık harcamalarında taksitli kredi","hadi-taksitli-saglik-kredisi-saglik-harcamalarinda-da-yaninda"],
+    ["Memorial'de %0,99 vade farkına 3 taksit","hadi-taksitli-saglik-kredisi-ile-memorial-hastanesinde-tedavi-ol-kolayca-ode"],
+    ["Alpi Diş Hastaneleri'nde 15 taksit","hadi-magazadan-alisveris-kredisi-ile-alpi-dis-hastanelerinde-15-taksit"],
+    ["Sigorta kampanyası","tom-bank-hadi-den-sigorta-kampanyasi"],
+    ["Özel okul ödemelerinde 10 taksit","ozel-okul-odemelerinde-10-taksit-ustelik-vade-farki-iade"],
+    ["Alfemo kampanyası","tom-bank-hadi-den-alfemo-kampanyasi"],
+    ["Kelebek kampanyası","tom-bank-hadi-den-kelebek-kampanyasi"],
+    ["Doğtaş kampanyası","tom-bank-hadi-den-dogtas-kampanyasi"],
+    ["Enza Home kampanyası","tom-bank-hadi-den-enza-home-kampanyasi"],
+    ["Divanev kampanyası","tom-bank-hadi-den-divanev-kampanyasi"],
+    ["Puffy kampanyası","tom-bank-hadi-den-puffy-kampanyasi"],
+    ["Yataş Bedding kampanyası","tom-bank-hadi-den-yatas-bedding-kampanyasi"],
+    ["İstikbal'de 36 aya varan taksit","hadi-taksitli-alisveris-kredisi-ile-istikbal-magazalarinda-36-aya-varan-taksit"],
+    ["Bellona'da 36 aya varan taksit","hadi-taksitli-alisveris-kredisi-ile-bellona-magazalarinda-36-aya-varan-taksit"],
+    ["Mondi mağazalarında 36 aya varan taksit","hadi-taksitli-alisveris-kredisi-ile-mondi-magazalarinda-36-aya-varan-taksit"],
+    ["Konfor mağazalarına özel 15 taksit","hadi-magazadan-alisveris-kredisi-ile-konfor-magazalarina-ozel-15-taksit"],
+    ["Petrol Ofisi'nde taksitli alışveriş kredisi","petrol-ofisi-harcamalarinda-hadi-taksitli-alisveris-kredisi-yaninda"],
+    ["Eve mağazalarında güncel oranla nakit iade","eve-alisverislerinde-10-nakit-iade"],
+    ["English Home'da %10 nakit iade","english-home-alisverislerinde-10-nakit-iade"],
+    ["2026'da Hadi Black ile evinin çayı bedava","2026da-evinin-caylari-hadi-kredi-kartindan"],
+    ["TOM Bank Hadi'nin \"Hesaplı\" Kampanyası (bayi kredisi)","tom-bank-hadi-nin-hesapli-kampanyasi"],
+    ["Özel Bankacılık: restoranda ayda 10.000 TL'ye varan iade","restoran-harcamalarinda-her-ay-10-000-tlye-varan-iade"],
+    ["Özel Bankacılık: uçak biletinde ayda 3.500 TL kazan","ucak-bileti-alimlarinda-ayda-3-500-tl-kazan"],
+    ["Kişiye özel kredi kartı iade kampanyaları (1.000–5.000 TL)","kredi-karti-harcamalarina-sana-ozel-1-000-tl-iade"]
+  ];
+
+  function daysLeftLabel(end){
+    if(!end) return "Süresiz / devam eden";
+    var endDate = new Date(end + "T23:59:59");
+    var diff = Math.ceil((endDate - today) / 86400000);
+    if(diff < 0) return "Süresi doldu";
+    if(diff === 0) return "Bugün son gün";
+    return diff + " gün kaldı";
+  }
+
+  var badgeLabel = {a101:"A101", genel:"Genel", gold:"Gold gerekli", ckk:"ÇKK", active:"Aktif", soon:"Yakında bitiyor", expired:"Süresi doldu"};
+
+  function renderCards(filter){
+    var grid = $('cardGrid');
+    grid.innerHTML = '';
+    campaigns.filter(function(c){ return filter==='all' || c.group===filter; }).forEach(function(c){
+      var el = document.createElement('div');
+      el.className = 'card';
+      var badgesHtml = c.badges.map(function(b){ return '<span class="badge ' + b + '">' + badgeLabel[b] + '</span>'; }).join('');
+      var bullets = c.bullets.map(function(b){ return '<li>' + b + '</li>'; }).join('');
+      el.innerHTML =
+        '<div class="badges">' + badgesHtml + '</div>' +
+        '<h3>' + c.title + '</h3>' +
+        '<ul>' + bullets + '</ul>' +
+        '<div class="foot"><a href="' + c.link + '" target="_blank" rel="noopener">Kampanya sayfası →</a><span class="days">' + daysLeftLabel(c.end) + '</span></div>';
+      grid.appendChild(el);
+    });
+  }
+
+  var tabButtons = document.querySelectorAll('.tab');
+  tabButtons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabButtons.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      renderCards(btn.getAttribute('data-filter'));
+    });
+  });
+  renderCards('all');
+
+  var otherList = $('otherList');
+  otherList.innerHTML = otherCampaigns.map(function(o){
+    return '<a href="https://tombankhadi.com/kampanyalar/' + o[1] + '" target="_blank" rel="noopener">' + o[0] + '</a>';
+  }).join('');
+
+})();
+</script>
